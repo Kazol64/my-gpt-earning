@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EarnNest — GPT Demo</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b31;--panel2:#192441;--text:#eef3ff;--muted:#aab6d3;--green:#6ee7b7;--blue:#8ab4ff;--line:#293655}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(150deg,#0b1020,#101b32);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
+.wrap{max-width:980px;margin:auto;padding:22px 16px 44px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-size:22px;font-weight:800;letter-spacing:.2px}.brand span{color:var(--green)}.pill{font-size:12px;background:#493719;color:#ffe3a3;border:1px solid #755b2d;padding:6px 10px;border-radius:99px}
+.hero{margin:26px 0 18px;padding:24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#172a47,#17213a)}.eyebrow{color:var(--green);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px}.hero h1{font-size:clamp(27px,5vw,42px);line-height:1.12;margin:10px 0}.hero p{color:var(--muted);max-width:620px;margin:0;line-height:1.6}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 26px}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}.label{color:var(--muted);font-size:13px}.value{font-size:25px;font-weight:800;margin-top:7px}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:25px 0 12px}.sectionhead h2{font-size:20px;margin:0}.sectionhead small{color:var(--muted)}.offers{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.offer{display:flex;gap:13px;align-items:flex-start}.ico{width:45px;height:45px;flex:0 0 45px;display:grid;place-items:center;border-radius:13px;background:var(--panel2);font-size:22px}.offer h3{font-size:16px;margin:0 0 5px}.offer p{font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 12px}.reward{color:var(--green);font-weight:800;font-size:14px}.btn{border:0;border-radius:10px;background:var(--green);color:#08241b;font-weight:800;padding:10px 13px;cursor:pointer;margin-top:10px}.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.btn:focus{outline:2px solid white;outline-offset:2px}.notice{margin-top:22px;padding:15px;border:1px solid #735a2e;border-radius:14px;background:#302719;color:#ffe6b1;font-size:13px;line-height:1.55}.foot{color:var(--muted);font-size:12px;text-align:center;margin-top:24px;line-height:1.6}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#e9fff5;color:#073d2b;padding:12px 16px;border-radius:12px;box-shadow:0 8px 30px #0006;max-width:90%;display:none;font-weight:700}
+@media(max-width:620px){.stats{grid-template-columns:1fr}.offers{grid-template-columns:1fr}.hero{padding:20px}.value{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">Earn<span>Nest</span></div><div class="pill">DEMO SITE · NO REAL PAYOUTS</div></header>
+  <section class="hero">
+    <div class="eyebrow">Small tasks · Demo rewards</div>
+    <h1>Earn rewards, one task at a time.</h1>
+    <p>Explore this sample GPT rewards dashboard. Offers and balances here are examples only; no real money is earned or paid.</p>
+  </section>
+  <section class="stats" aria-label="Demo account statistics">
+    <div class="stat"><div class="label">Demo balance</div><div class="value" id="balance">$0.50</div></div>
+    <div class="stat"><div class="label">Tasks completed</div><div class="value" id="completed">1</div></div>
+    <div class="stat"><div class="label">Available demo offers</div><div class="value">4</div></div>
+  </section>
+  <div class="sectionhead"><h2>Available offers</h2><small>Sample tasks only</small></div>
+  <section class="offers">
+    <article class="card offer"><div class="ico">📝</div><div><h3>Sample Survey</h3><p>Preview a short survey task card. This is not connected to a survey provider.</p><div class="reward">+$0.20 demo</div><button class="btn" onclick="claim('survey',0.20)">Try demo offer</button></div></article>
+    <article class="card offer"><div class="ico">🎮</div><div><h3>Game Challenge</h3><p>See how a game offer might appear on your future GPT website.</p><div class="reward">+$0.35 demo</div><button class="btn" onclick="claim('game',0.35)">Try demo offer</button></div></article>
+    <article class="card offer"><div class="ico">📲</div><div><h3>App Discovery</h3><p>Example card for an app-related offer. No app install is required.</p><div class="reward">+$0.15 demo</div><button class="btn" onclick="claim('app',0.15)">Try demo offer</button></div></article>
+    <article class="card offer"><div class="ico">🎯</div><div><h3>Daily Task</h3><p>Example of a small daily task tile for the dashboard.</p><div class="reward">+$0.10 demo</div><button class="btn" onclick="claim('daily',0.10)">Try demo offer</button></div></article>
+  </section>
+  <div class="sectionhead"><h2>Withdraw</h2><small>Preview only</small></div>
+  <section class="card"><p style="margin-top:0;color:var(--muted);line-height:1.55">A real withdrawal feature needs a verified payout provider, server-side checks and compliance review. This demo cannot send money.</p><button class="btn secondary" onclick="toast('Demo only: no payout account is connected.')">View withdrawal options</button></section>
+  <div class="notice"><strong>Important:</strong> This is a front-end demo. The sample balance is stored only in this browser session and can be changed by the user. Do not use it to collect deposits, promise earnings, or claim real payouts.</div>
+  <footer class="foot">EarnNest demo template · Replace sample content and connect a secure backend before any real launch.</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+let balance=0.50, completed=1; const claimed=new Set();
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2600)}
+function claim(id,amount){if(claimed.has(id)){toast('This sample offer was already tried.');return}claimed.add(id);balance=Math.round((balance+amount)*100)/100;completed++;document.getElementById('balance').textContent='$'+balance.toFixed(2);document.getElementById('completed').textContent=completed;toast('Demo only: sample balance updated. No real reward was earned.')}
+</script>
+</body>
+</html>
